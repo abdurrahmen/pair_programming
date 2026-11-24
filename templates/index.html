@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Home | StudentHub{% endblock %}
+
+{% block content %}
+
+<h1 class="page-title">Welcome to StudentHub 👋</h1>
+
+<p class="subtitle">
+    Manage your students and organize their information.
+</p>
+
+<div class="stats">
+
+    <div class="stat-card">
+        <h2>{{ students|length }}</h2>
+        <p>Total Registered Students</p>
+    </div>
+
+    <div class="stat-card">
+        <h2>{{ students|map(attribute='email')|list|length }}</h2>
+        <p>Registered Email Addresses</p>
+    </div>
+
+</div>
+
+<div class="card">
+
+    <h2 style="margin-bottom: 12px;">
+        Student Management
+    </h2>
+
+    <p class="subtitle">
+        Easily register new students and manage their information.
+    </p>
+
+    <a href="{{ url_for('add_student') }}" class="btn">
+        + Add New Student
+    </a>
+
+    <a href="{{ url_for('show_students') }}" class="btn btn-secondary">
+        View Students
+    </a>
+
+</div>
+
+{% endblock %}

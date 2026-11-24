@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Students | StudentHub{% endblock %}
+
+{% block content %}
+
+<h1 class="page-title">Registered Students</h1>
+
+<p class="subtitle">
+    View all students registered in the system.
+</p>
+
+<div class="card">
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:25px; gap:15px; flex-wrap:wrap;">
+
+        <h2>Students List</h2>
+
+        <a href="{{ url_for('add_student') }}" class="btn">
+            + Add Student
+        </a>
+
+    </div>
+
+    {% if students %}
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Student ID</th>
+                    <th>Email Address</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for student in students %}
+
+                    <tr>
+
+                        <td>
+                            <strong>{{ student.name }}</strong>
+                        </td>
+
+                        <td>
+                            <span class="student-id">
+                                {{ student.id }}
+                            </span>
+                        </td>
+
+                        <td>{{ student.email }}</td>
+
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    {% else %}
+
+        <div class="empty">
+
+            <h3>No students registered yet.</h3>
+
+            <p style="margin:12px 0 20px;">
+                Start by adding your first student!
+            </p>
+
+            <a href="{{ url_for('add_student') }}" class="btn">
+                Add First Student
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
